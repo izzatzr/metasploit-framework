@@ -52,8 +52,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activesupport', *Metasploit::Framework::RailsVersionConstraint::RAILS_VERSION
   # Needed for config.action_view for view plugin compatibility for Pro
   spec.add_runtime_dependency 'actionpack', *Metasploit::Framework::RailsVersionConstraint::RAILS_VERSION
-  # Backports Ruby features across language versions
-  spec.add_runtime_dependency 'backports'
   # Needed for some admin modules (cfme_manageiq_evm_pass_reset.rb)
   spec.add_runtime_dependency 'bcrypt', '3.1.12'
   # Needed for Javascript obfuscation
@@ -63,16 +61,16 @@ Gem::Specification.new do |spec|
   # Metasm compiler/decompiler/assembler
   spec.add_runtime_dependency 'metasm'
   # Metasploit::Concern hooks
-  spec.add_runtime_dependency 'metasploit-concern'
+  spec.add_runtime_dependency 'metasploit-concern', '~> 2.0.0'
   # Metasploit::Credential database models
-  spec.add_runtime_dependency 'metasploit-credential'
+  spec.add_runtime_dependency 'metasploit-credential', '~> 3.0.0'
   # Database models shared between framework and Pro.
-  spec.add_runtime_dependency 'metasploit_data_models', '3.0.10'
+  spec.add_runtime_dependency 'metasploit_data_models', '~> 3.0.10'
   # Things that would normally be part of the database model, but which
   # are needed when there's no database
-  spec.add_runtime_dependency 'metasploit-model'
+  spec.add_runtime_dependency 'metasploit-model', '~> 2.0.4'
   # Needed for Meterpreter
-  spec.add_runtime_dependency 'metasploit-payloads', '1.3.79'
+  spec.add_runtime_dependency 'metasploit-payloads', '1.3.84'
   # Needed for the next-generation POSIX Meterpreter
   spec.add_runtime_dependency 'metasploit_payloads-mettle', '0.5.16'
   # Needed by msfgui and other rpc components
@@ -205,4 +203,12 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'aws-sdk-s3'
   spec.add_runtime_dependency 'aws-sdk-ec2'
   spec.add_runtime_dependency 'aws-sdk-iam'
+
+  # Needed for WebSocket Support
+  spec.add_runtime_dependency 'faye-websocket'
+  spec.add_runtime_dependency 'eventmachine'
+
+  # Earlier than latest Faraday gem is used to prevent upstream Octokit errors
+  spec.add_runtime_dependency 'faraday', '<= 0.17.0'
+
 end
